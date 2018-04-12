@@ -1,8 +1,8 @@
 {
   "pages": [
     {
-      "pid": "main", "name": "MyDefaultPortal",
-      "uri": "product/checkout",
+      "pid": "main", "name": "MyDefaultPortal", "url": "/",
+      "default": true, "hash": "#/",
       "layout": [
         {
           "oid": "my-testimonial-iod",
@@ -11,6 +11,22 @@
           "selector": "", //xpath selector
           "childrens": [
             {}
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "400", "name": "error-404", "url": "/404",
+      "hash": "#/404",
+      "layout": [
+        {
+          "oid": "error-404",
+          "order": 0,
+          "template": "error-page",
+          "childrens": [
+            { "template": "headr", "order": 1 },
+            { "template": "404", "order": 1 },
+            { "template": "error-footer", "order": 2 }
           ]
         }
       ]
