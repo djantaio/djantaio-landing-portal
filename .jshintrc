@@ -1,0 +1,23 @@
+{
+  "esversion": 6,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "varstmt": true,
+  "globals": {
+    "window": true,
+    "ga": true,
+    "document": true,
+    "$": true
+  },
+  "mocha": true,
+  "jasmine": true
+}

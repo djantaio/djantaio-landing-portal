@@ -1,0 +1,19 @@
+{
+  "pages": [
+    {
+      "pid": "main", "name": "MyDefaultPortal",
+      "uri": "product/checkout",
+      "layout": [
+        {
+          "oid": "my-testimonial-iod",
+          "order": 0,"template": "testimonial",
+          "data-url": "/api/v1/pages/portal",
+          "selector": "", //xpath selector
+          "childrens": [
+            {}
+          ]
+        }
+      ]
+    }
+  ]
+}

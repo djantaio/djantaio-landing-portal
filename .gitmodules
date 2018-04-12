@@ -1,0 +1,12 @@
+[submodule "templates"]
+	path = resources/template
+	url = git@github.com:djanta/djantaio-resources-template.git
+	branch = develop
+[submodule "themes"]
+	path = resources/themes
+	url = git@github.com:djanta/djantaio-resources-themes.git
+	branch = develop
+[submodule "vendors"]
+	path = resources/vendor
+	url = git@github.com:djantaio/djantaio-resources-vendor.git
+	branch = develop

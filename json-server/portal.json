@@ -1,0 +1,28 @@
+{
+  "defaults": {
+    "template": {
+      "engine": "mustache",
+      "version": "1.0.0",
+      "name": "index",
+      "theme": "faulkner"
+    }
+  },
+  "pages": [
+    {
+      "oid": "index", "name": "MyDefaultIndex",
+      "title": "djanta.IO portal website",
+      "uri": "product/checkout",
+      "layout": [
+        {
+          "order": 0,
+          "template": "testimonial",
+          "oid": "my-testimonial-iod",
+          "content": {
+            "url": "/api/v1/testimonials/{oid}"
+          },
+          "decorator": [{}]
+        }
+      ]
+    }
+  ]
+}
