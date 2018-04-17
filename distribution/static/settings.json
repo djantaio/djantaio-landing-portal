@@ -1,0 +1,74 @@
+{
+  "view": "viewport",
+  "lang": [
+    {
+      "name": "English",
+      "code": "en_US",
+      "default": true,
+      "enabled": true,
+      "dictionary": {
+        "url": "/static/v1/i18n/us.json"
+      }
+    }
+  ],
+  "resource": {
+    "mapping": ["/static/v1/layout.json"],
+    "pages": ["/static/v1/pages.json"]
+  },
+  "static": {
+    "social": [
+      {
+        "name": "twitter",
+        "url": "https://twitter.com/djantaio",
+        "alias": "@djantaio",
+        "target": "_blank"
+      },
+      {
+        "name": "facebook",
+        "url": "https://faceboo.com/djantaio",
+        "alias": "#djantaio",
+        "target": "_blank"
+      },
+      {
+        "name": "github",
+        "url": "https://github.com/djanta",
+        "alias": "@djantaio",
+        "target": "_blank"
+      },
+      {
+        "name": "docker",
+        "url": "https://docker.com/djantaio",
+        "alias": "@djantaio",
+        "target": "_blank"
+      },
+      {
+        "name": "stackoverflow",
+        "url": "https://stackoverflow.com/djantajs",
+        "alias": "@djantall",
+        "target": "_blank"
+      },
+      {
+        "name": "slack",
+        "url": "https://slack.com/djanta",
+        "alias": "@djantall",
+        "target": "_blank"
+      },
+      {
+        "name": "gitter",
+        "url": "https://gitter.com/djantaio/djantajs",
+        "alias": "@djantajs",
+        "target": "_blank"
+      }
+    ]
+  },
+  "tracking": {
+    "google": {
+      "ua": {
+        "name": "create",
+        "value": "",
+        "lf": ""
+      },
+      "dimensions": []
+    }
+  }
+}

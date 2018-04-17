@@ -3,9 +3,13 @@
 let path = require('path');
 let _ = require('lodash');
 
+//let CompressionPlugin = require('compression-webpack-plugin');
+let zlib = require('zlib');
+
 let defaults = {
+  release: path.join(__dirname, 'distribution'),
+  tmp: path.join(__dirname, 'build'),
   lib: path.join(__dirname, 'node_modules'),
-  base: path.join(__dirname, 'dist'),
   title: 'djantaJS | The most easiest, faster and strong micro-service platform',
   google: {
     tracking: {
@@ -16,27 +20,95 @@ let defaults = {
 
 module.exports = {
   build: {
-    dist: defaults.dist,
-    rootDir: 'build',
-    release: 'dist',
-    assets: 'dist/assets'
-
+    dist: defaults.release,
+    rootDir: defaults.tmp,
+    assets: path.join(defaults.release, 'assets'),
   },
+
+  clean: [defaults.release, defaults.tmp],
 
   minify: {
     //collapseWhitespace: true,
     //removeEmptyAttributes: true
   },
 
-  vandors: {
-    files: _.map(['mustache'], file => path.resolve(defaults.lib, file))
+  vandor: {
+    //compressor: (buffer, done) => zlib.gzip(buffer, { level: 9 }, done),
+    mapping: {
+      //files: _.map([], file => path.resolve(defaults.lib, file)),
+      portal: ['./src/index.js']
+    },
+    chunks: {
+      default: ['portal', 'default']
+    },
+    assets: {
+      production: [
+        { assets: [
+            { path: 'js/jquery-3.2.1.min.js', type: 'js' },
+            { path: 'js/timber.master.min.js', type: 'js' },
+            { path: 'css/skin.css', type: 'css' },
+            { path: 'css/core.min.css', type: 'css' }
+          ], public: 'assets/', append: true
+        },
+        { assets: [
+          {
+            path: 'http://maps.googleapis.com/maps/api/js?v=3', type: 'js'/*, attributes: {
+              integrity: 'sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=',
+              crossorigin: 'anonymous'
+            }*/
+          }
+        ], append: true }
+      ],
+      development: [
+        { assets: [
+          { path: 'js/jquery-3.2.1.min.js', type: 'js' },
+          { path: 'js/timber.master.min.js', type: 'js' },
+          { path: 'css/timber.css', type: 'css' },
+          { path: 'css/avalanche.css', type: 'css' },
+          { path: 'css/snowbridge.css', type: 'css' },
+          { path: 'css/summit.css', type: 'css' },
+          { path: 'css/templates.css', type: 'css' },
+          { path: 'css/skin.css', type: 'css' }
+        ], public: 'assets/', append: true
+        },
+        { assets: [
+          {
+            path: 'http://maps.googleapis.com/maps/api/js?v=3', type: 'js'/*, attributes: {
+             integrity: 'sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=',
+             crossorigin: 'anonymous'
+           }*/
+          }
+        ], append: true }
+      ]
+    }
   },
 
-  copy: {
-    faulker: [
-      { from: './resources/themes/resources/faulkner/1.0.5/css/', to: './assets/css/[name].[ext]', test: /([^/]+)\/(.+)\.css/},
-      { from: './resources/themes/resources/faulkner/1.0.5/fonts/', to: './assets/fonts/[name].[ext]' },
-      { from: './resources/themes/resources/faulkner/1.0.5/js/', to: './assets/js/[name].[ext]' }
+  resources: {
+    static: [
+      {
+        test: /([^/]+)\/(.+)\.(png|svg|jpg|gif|json|js)/,
+        from: './static/**/*', to: './'
+      }
+    ],
+    default: [
+      { from: './resources/themes/resources/default/css/', to: './assets/css/[name].[ext]', test: /([^/]+)\/(.+)\.css/},
+      { from: './resources/themes/resources/default/fonts/', to: './assets/fonts/[name].[ext]' },
+      { from: './resources/themes/resources/default/js/', to: './assets/js/[name].[ext]', test: /([^/]+)\/(.+)\.js/}
+    ],
+    media: [
+      /*{
+        from: './resources/themes/resources/default/images/',
+        to: './assets/images/[name].[ext]',
+        test: /([^/]+)\/(.+)\.(png|svg|jpg|gif)/
+      },*/
+      {
+        from: './resources/local/images/', to: './assets/images/[name].[ext]',
+        test: /([^/]+)\/(.+)\.(png|svg|jpg|gif)/
+      },
+      {
+        from: './resources/local/medias/', to: './assets/medias/[name].[ext]',
+        test: /([^/]+)\/(.+)\.(swf|mp3|mp4|webm|png|svg|jpg|gif)/
+      }
     ]
   },
 
@@ -61,16 +133,15 @@ module.exports = {
       ],
       scripts: []
     },
-    pages: [
-      {
-        name: 'index.html',
-        file: './resources/template/resources/faulkner/1.0.5/default.mustache',
-        engine: 'mustache'
-      }
-    ]
-  },
-
-  karma: {
-    config: 'karma.conf.js'
+    pages: {
+      common: [
+        {
+          name: 'index.html',
+          file: './resources/template/resources/default/default.mustache'
+        }
+      ],
+      development: [],
+      production: []
+    }
   }
 };

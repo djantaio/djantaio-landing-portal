@@ -1,46 +1,46 @@
 'use strict';
 
-let setting = require('./config');
+let config = require('./config');
 let merge = require('webpack-merge');
 let UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 let common = require('./webpack.common.js');
 let webpack = require('webpack');
-let ConcatPlugin = require('webpack-concat-plugin');
 
-let config = merge(common, {
-  mode: 'production',
-  optimization: {
-    minimize: true,
-    runtimeChunk: {
-      name: 'vendor'
-    },
-    splitChunks: {
-      cacheGroups: {
-        default: false,
-        commons: {
-          test: /node_modules/,
-          name: "vendor",
-          chunks: "initial",
-          minSize: 1
-        }
-      }
-    }
-  }
+let HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
+
+let _ = require('lodash');
+
+let update = merge(common, {
+  mode: 'production'
 });
 
-config.plugins = (config.plugins || []).concat(
-  new UglifyJSPlugin({ sourceMap: true })
-  // new ConcatPlugin({
-  //   uglify: false,
-  //   sourceMap: false,
-  //   name: 'result',
-  //   outputPath: 'path/to/output/',
-  //   fileName: '[name].[hash:8].js',
-  //   filesToConcat: ['jquery', './src/lib/!**', './dep/dep.js', ['./some/!**', '!./some/excludes/!**']],
-  //   attributes: {
-  //     async: true
-  //   }
-  // })
-);
+update.plugins = (update.plugins || [])
+  .concat(_.map(config.site.pages.production, page => new HtmlWebpackPlugin(_.merge({
+      hash: false,
+      inject: !_.isNil(page.scope) ? page.scope : 'body',
+      filename: page.name, //relative to root of the application
+      chunks: !_.isNil(page.lib) ? _.isArrayLikeObject(page.lib) ? page.lib : [page.lib] : [],
+      minify: config.minify //trim the rendered html source ...
+    }, !_.isNil(page.file) ? { template: page.file } : {} ))
+  ))
+  .concat(_.map(config.vandor.assets.production, a => new HtmlWebpackIncludeAssetsPlugin({
+    assets: a.assets,
+    append: a.append || true,
+    publicPath: a.public || ''
+  })))
+  .concat([
+    new UglifyJSPlugin({
+      test: /\.js($|\?)/i,
+      sourceMap: true,
+      parallel: true,
+      uglifyOptions: {
+        compress: {
+          inline: false //config.vandor.compressor
+        },
+        mangle: true
+      }
+    })
+  ]);
 
-module.exports = config;
+module.exports = update;

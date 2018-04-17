@@ -1,0 +1,127 @@
+{
+  "pages": [
+    {
+      "pid": "main", "name": "MyDefaultPortal", "url": "/",
+      "default": true, "hash": "#/",
+      "layout": [
+        {
+          "oid": "my-testimonial-iod",
+          "order": 0,"template": "testimonial",
+          "data-url": "/api/v1/pages/portal",
+          "selector": "",
+          "childrens": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "404", "name": "error-404", "url": "/404",
+      "hash": "#/404",
+      "layout": [
+        {
+          "oid": "error-404",
+          "order": 0,
+          "template": "error-page",
+          "childrens": [
+            { "template": "headr", "order": 0 },
+            { "template": "404", "order": 1 },
+            { "template": "error-footer", "order": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "403", "name": "error-403", "url": "/403",
+      "hash": "#/403",
+      "layout": [
+        {
+          "oid": "error-403",
+          "order": 0,
+          "template": "error-page",
+          "childrens": [
+            { "template": "headr", "order": 0 },
+            { "template": "403", "order": 1 },
+            { "template": "error-footer", "order": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "500", "name": "error-500", "url": "/500",
+      "hash": "#/500",
+      "layout": [
+        {
+          "oid": "error-500",
+          "order": 0,
+          "template": "error-page",
+          "childrens": [
+            { "template": "headr", "order": 0 },
+            { "template": "500", "order": 1 },
+            { "template": "error-footer", "order": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "blog", "name": "community-blog", "url": "/blog",
+      "hash": "#/blog",
+      "layout": [
+        {
+          "oid": "community-blog",
+          "order": 0,
+          "template": "blog",
+          "childrens": [
+            { "template": "header", "order": 0 },
+            {
+              "template": "blog",
+              "order": 1,
+              "data-url": "/api/v1/community/blog"
+            },
+            { "template": "default_footer", "order": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "hireus", "name": "community-blog", "url": "/hire-us",
+      "hash": "#/hire-us",
+      "layout": [
+        {
+          "oid": "hire-us",
+          "order": 0,
+          "template": "hire-us",
+          "childrens": [
+            { "template": "header", "order": 0 },
+            {
+              "template": "hire-us",
+              "order": 0,
+              "data-url": "/api/v1/flagship/hire-us"
+            },
+            { "template": "business_footer", "order": 2 }
+          ]
+        }
+      ]
+    },
+    {
+      "pid": "contact", "name": "contact", "url": "/contact",
+      "hash": "#/contact",
+      "layout": [
+        {
+          "oid": "contact",
+          "order": 0,
+          "template": "contact",
+          "childrens": [
+            { "template": "header", "order": 0 },
+            {
+              "template": "contact-us",
+              "order": 1,
+              "data-url": "/api/v1/flagship/hire-us"
+            },
+            { "template": "business_footer", "order": 2 }
+          ]
+        }
+      ]
+    }
+  ]
+}
