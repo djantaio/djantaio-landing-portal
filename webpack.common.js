@@ -107,7 +107,19 @@ module.exports = {
           tiny: true,
           render: config.site.head,
         },
-      }
+      }/*,
+      {
+        loader: 'string-replace-loader',
+        options: {
+          multiple: [
+            { search: /API_URL/g, replace: process.env['PLUNKER_API_URL'] },
+            { search: /EMBED_URL/g, replace: process.env['PLUNKER_EMBED_URL'] },
+            { search: /RUN_URL/g, replace: process.env['PLUNKER_RUN_URL'] },
+            { search: /SHOT_URL/g, replace: process.env['PLUNKER_SHOT_URL'] },
+            { search: /WWW_URL/g, replace: process.env['PLUNKER_WWW_URL'] },
+          ],
+        }
+      },*/
     ]
   },
   plugins: [

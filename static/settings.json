@@ -12,8 +12,10 @@
     }
   ],
   "resource": {
-    "mapping": ["/static/v1/layout.json"],
-    "pages": ["/static/v1/pages.json"]
+    "mapping": ["/static/v1/mapping.json", "/static/v1/layout.json"],
+    "pages": [
+      "/static/v1/pages.json", "/static/v1/pages/404.json"
+    ]
   },
   "static": {
     "social": [

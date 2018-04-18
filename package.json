@@ -17,13 +17,12 @@
   },
   "homepage": "https://github.com/djanta/djantaio-landing-portal#readme",
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js --colors --progress",
-    "start-verbose": "webpack-dev-server --mode development --open --config webpack.dev.js --progress --profile --colors --display-error-details --display-cached --optimize-occurence-order --optimize-minimize --optimize-dedupe",
+    "start": "webpack-dev-server --open --config webpack.dev.js --colors --progress --watch --profile",
+    "start-verbose": "webpack-dev-server --mode development --open --config webpack.dev.js --progress --watch --profile --colors --display-error-details --display-cached --optimize-occurence-order --optimize-minimize --optimize-dedupe",
     "build": "webpack --colors --progress --profile --config webpack.prod.js",
     "analyze": "webpack --colors --progress --profile --config webpack.analyze.js",
     "json-server": "json-server --watch json-server/portal.json",
     "delayed-open": "sleep 5 && opener http://localhost:2368",
-    "watch": "webpack --watch --progress --profile",
     "clean": "rimraf node_modules doc dist && npm cache clean",
     "clean-install": "npm run clean && npm install",
     "clean-start": "npm run clean && npm start",
@@ -65,6 +64,7 @@
     "webpack-concat-plugin": "^2.4.2",
     "script-ext-html-webpack-plugin": "^1.8.8",
     "mustache-loader": "^1.4.0",
-    "compression-webpack-plugin": "^1.1.11"
+    "compression-webpack-plugin": "^1.1.11",
+    "string-replace-loader": "^2.1.1"
   }
 }

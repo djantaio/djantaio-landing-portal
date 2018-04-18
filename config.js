@@ -52,7 +52,8 @@ module.exports = {
         },
         { assets: [
           {
-            path: 'http://maps.googleapis.com/maps/api/js?v=3', type: 'js'/*, attributes: {
+            path: 'http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAO-jIIO-FwEvDVQ0cwSEo5Be7Exv6xFl8',
+            type: 'js'/*, attributes: {
               integrity: 'sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=',
               crossorigin: 'anonymous'
             }*/
@@ -68,13 +69,16 @@ module.exports = {
           { path: 'css/snowbridge.css', type: 'css' },
           { path: 'css/summit.css', type: 'css' },
           { path: 'css/templates.css', type: 'css' },
-          { path: 'css/skin.css', type: 'css' }
+          { path: 'css/skin.css', type: 'css' },
+          { path: 'js/defaults-1.0.0.js', type: 'js' },
+          { path: 'js/templatejs-0.0.1.js', type: 'js' },
         ], public: 'assets/', append: true
         },
         { assets: [
           {
-            path: 'http://maps.googleapis.com/maps/api/js?v=3', type: 'js'/*, attributes: {
-             integrity: 'sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=',
+            path: 'http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAO-jIIO-FwEvDVQ0cwSEo5Be7Exv6xFl8',
+            type: 'js'/*, attributes: {
+             integrity: 'sha256-/8s717jcIzLy3oi35EouyE=',
              crossorigin: 'anonymous'
            }*/
           }
@@ -88,12 +92,19 @@ module.exports = {
       {
         test: /([^/]+)\/(.+)\.(png|svg|jpg|gif|json|js)/,
         from: './static/**/*', to: './'
+      },
+      {
+        test: /([^/]+)\/(.+)\.(json)/,
+        from: './resources/template/resources/default/mapping.json',
+        to: path.join(defaults.release, 'static', 'v1', '/'),
+        flatten: true
       }
     ],
     default: [
       { from: './resources/themes/resources/default/css/', to: './assets/css/[name].[ext]', test: /([^/]+)\/(.+)\.css/},
       { from: './resources/themes/resources/default/fonts/', to: './assets/fonts/[name].[ext]' },
-      { from: './resources/themes/resources/default/js/', to: './assets/js/[name].[ext]', test: /([^/]+)\/(.+)\.js/}
+      { from: './resources/themes/resources/default/js/', to: './assets/js/[name].[ext]', test: /([^/]+)\/(.+)\.js/},
+      { from: './resources/template/distribution/', to: './assets/js', test: /([^/]+)\/(.+)\.(js)/, flatten: true}
     ],
     media: [
       /*{
