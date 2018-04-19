@@ -1,46 +1,38 @@
 sudo: false
 language: node_js
 node_js:
-  - "6"
+  - '6'
 dist: trusty
 services:
   - node
-
 branches:
   except:
-    - /^pr\..*/
-    - /^features\..*/
+    - "/^pr\\..*/"
+    - "/^features\\..*/"
   only:
     - master
     - develop
-    - /^v[0-9]+\.){0,2}(\*|[0-9]+
-
+    - "/^v[0-9]+\\.){0,2}(\\*|[0-9]+"
 before_install:
   - git config user.name "$GH_USER"
   - git config user.email "$GH_USER_EMAIL"
   - git config credential.helper "store --file=.git/credentials"
   - echo "https://$GH_TOKEN:@github.com" > .git/credentials
-  - echo .git/credentials #console print out
-
+  - echo .git/credentials
 install:
   - npm i
   - npm run git-submodule
-
 after_success:
-  # Only continue for 'develop' or 'release/*' branches
   - if [ "$TRAVIS_BRANCH" =~ "^(develop$|feature//*)" ]; then
-      echo "Trigged branch= $TRAVIS_BRANCH"
-    else
-      npm run build
-    fi
-
+    echo "Trigged branch=$TRAVIS_BRANCH"
+    else npm run build
+  fi
 notifications:
   email: false
   slack:
     rooms:
       - djantaio:1GeeSv1noSekK9to1yTqsbDw#djantaio
     on_success: always
-    #on_failure: always
     template:
       - Build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository}@%{branch}
         by %{author} %{result} in %{duration}
@@ -50,3 +42,9 @@ notifications:
     on_success: change
     on_failure: always
     on_start: never
+env:
+  global:
+    #DOCKER USERNAME
+    - secure: hl9aDrvcPzMlA5Lyy4jCQlmVX8AU8dFj9MOgXhVCPeS4gx2Mw1AXK//burLL4agsZEbbVhKOR4us+E99zg/TVvGqZQNIsgHbW2/vWVS0qFCWAgfVho4JIRu2E+tYBHnf1LpijSV3GOk7EsBD2dD2n0fJHKFCet8B9120pseUtzokXF6OfCbOFfIQ3wl295lPKWUv3qKMN3nE4hZTCSsDSf/wIL2slMGyazSdlKmKcVsnrN2fG+tdUoKrC2To6MuvweaMf3IWdJeZaGp7LOjA2ogOTInZM9mlrnTRCwu7ge1YM2nLVMGkvlNPaYrXJRBYvMgJ1TE0Vi1ebV6/LHUtz+R+DRyXPTi+tfgOfrg/bI0PUcZIhu4KUghzEP9WN3Hs1VsarE197+jPQqynOHqaVXSRXfsNpMaLLkNWwg/zFgwIghrVa5FM7Gh4TNd/RoaBLsAfP3fXQsArZNMyqu0VezizQz+Rc9gLzZDFKVb26hVO3lMMfl2BKFVRQ1xuGVobkTpEDDnRobHxKkYTlmklcmtASnKerDyKKQ9tzrk3pVYggDxbVzWyGx31MoyLh3zBWS2WYcM2f+T1fyCieLiWbHGiVvvtzhb8YTbWOy4Rk9JTyZCv21zEkzpyAvzfWMrq1afjT1//Sp+xGPJzR9w2Ji0q3YCWolrytW3ZOeQdMCI=
+    #DOCKER PWD
+    - secure: dFi4KsayOmymVqbOW5mUQmKFYXHuOX8eW+WzCcSxtLR5GCTKBiu3RbAYrthgnDwsDGbFC26k65MwQmBHq9weULrfqWot3Bir6j7NaqyYeL6Tf6HeV+s37vbCNkpjf913p3n0CWsYXE7NkEhHfnL3cx/vWmGhkT/Lcmq/F6aBYEiHVF5OxDee89ohZQlBPevLK5WWQuyrN1oU8fjNeo5Oqk4ds2Ezc8eOYCSASI2klso5Hx+TCxj3L0AlMCUI9umn+AN+vPDDlJXBDzGPe5LhIC1qNKIhjW3EA2cym26NcaO0esTY6LkrJsT4UsqpjxL3X+7u7B73AMAEEoPeWekVPthlgkuvx8XemLBvhxaqm66PQq3lHCT2oMF/iFXiWuQQ4bZAgc7LOsqrb125Ee6jLpvN89ZY5taqo2WL9LiGyDmSeAaOn+n0heP3C2GM1Skb8vGF/g8NQpIaRREYBNCTZda/rMPSssVxdmvZmOo7ZmUJUdxkS4ua4oRTr6O5y2pXQ0N/dw3qxN1CO2HHW9OLtDp7rgZqNNGk7Vjne5hCx3z5HKMHwonZ/FbfsSJtXtsB5JoYQo25297bKLbPTp8GKMlWfPKQ/RQM+BPPLH35QEQCaJM+Li7VOwShricBCVRxCIGvc8eLN2HVCzxJwF8gmiHaEouGUCdBAOKnrf3EOUw=
