@@ -40,7 +40,7 @@
     "html-webpack-plugin": "^3.0.6",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.1.1",
-    "webpack-cli": "^2.0.12",
+    "webpack-cli": "^3.1.0",
     "load-grunt-tasks": "^3.5.2",
     "grunt-available-tasks": "^0.6.3",
     "webpack-merge": "^4.1.2",
