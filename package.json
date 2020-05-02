@@ -27,7 +27,9 @@
     "clean": "rimraf node_modules doc dist && npm cache clean",
     "clean-install": "npm run clean && npm install",
     "clean-start": "npm run clean && npm start",
-    "git-submodule": "git submodule update --init --merge --remote --checkout"
+    "git-submodule": "git submodule update --init --merge --remote --checkout",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "devDependencies": {
     "lodash": "^4.17.5",
@@ -65,5 +67,9 @@
     "webpack-concat-plugin": "^2.4.2",
     "script-ext-html-webpack-plugin": "^1.8.8",
     "mustache-loader": "^1.4.0"
+  },
+  "snyk": true,
+  "dependencies": {
+    "snyk": "^1.316.2"
   }
 }
