@@ -30,7 +30,7 @@
     "git-submodule": "git submodule update --init --merge --remote --checkout"
   },
   "devDependencies": {
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "copy-webpack-plugin": "^4.5.1",
     "grunt": "^1.0.1",
     "grunt-contrib-less": "^1.4.1",
