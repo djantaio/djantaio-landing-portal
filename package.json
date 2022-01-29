@@ -32,7 +32,7 @@
   "devDependencies": {
     "lodash": "^4.17.5",
     "copy-webpack-plugin": "^4.5.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-contrib-less": "^1.4.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-webpack": "^3.1.1",
