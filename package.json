@@ -30,14 +30,14 @@
     "git-submodule": "git submodule update --init --merge --remote --checkout"
   },
   "devDependencies": {
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.17",
     "copy-webpack-plugin": "^4.5.1",
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.3",
     "grunt-contrib-less": "^1.4.1",
-    "grunt-contrib-watch": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.1",
     "grunt-webpack": "^3.1.1",
     "grunt-html-convert": "^0.0.2",
-    "html-webpack-plugin": "^3.0.6",
+    "html-webpack-plugin": "^4.0.0",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
